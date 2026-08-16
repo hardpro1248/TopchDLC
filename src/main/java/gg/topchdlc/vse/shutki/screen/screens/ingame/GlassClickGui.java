@@ -548,15 +548,15 @@ private boolean searchFocused = false;
     }
 
     private void renderBrand() {
-        float logoSize = 14f;
+        float logoSize = 9f;
         float logoX = drag.x + 10f;
-        float logoY = drag.y + 7.5f;
+        float logoY = drag.y + 10f;
         Client.RENDERER.texture(LOGO, logoX, logoY, logoSize, logoSize, 1f, new Vector4f(0),
                 Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
 
         String name = "TopchDLC";
-        float textSize = 7f;
-        float textX = logoX + logoSize + 4f;
+        float textSize = 6f;
+        float textX = logoX + logoSize + 3f;
         float textY = logoY + logoSize / 2f - Client.RENDERER.textHeight(TextureUse.SFMEDIUM, textSize) / 2f;
 
         Color glow = new Color(40, 110, 255);

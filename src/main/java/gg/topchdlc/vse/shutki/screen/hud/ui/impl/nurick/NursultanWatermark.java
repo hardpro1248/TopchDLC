@@ -38,7 +38,7 @@ public class NursultanWatermark extends HudElement {
 
     private static final Vector4f ROUND = new Vector4f(5.5f, 5.5f, 5.5f, 5.5f);
     private static final Identifier LOGO = Identifier.of("topchdlc", "images/ui/logo.png");
-    private static final float LOGO_TEXTURE_SIZE = 10f;
+    private static final float LOGO_TEXTURE_SIZE = 7f;
 
     public NursultanWatermark(Drag drag) {
         super("NursultanWatermark", drag);

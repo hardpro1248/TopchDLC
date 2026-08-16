@@ -28,6 +28,7 @@ public class Optimization extends Module {
     public final CheckBox viewDistance = checkbox("Дистанция прорисовки 5", false);
     public final CheckBox fastGraphics = checkbox("Fast graphics", false);
     public final CheckBox ao = checkbox("Выключить AO", true);
+    public final CheckBox mega = checkbox("Мега оптимизация", true);
 
 
 
@@ -40,6 +41,13 @@ public class Optimization extends Module {
     private Boolean prevVsync = null;
     private Integer prevViewDistance = null;
     private Boolean prevAo = null;
+    private Integer prevSimulationDistance = null;
+    private Double prevEntityScaling = null;
+    private Integer prevMipmap = null;
+    private Integer prevWeatherRadius = null;
+    private GraphicsMode prevGraphics = null;
+    private Boolean prevBobView = null;
+    private Double prevDistortion = null;
 
 
 
@@ -63,6 +71,13 @@ public class Optimization extends Module {
             prevVsync = mc.options.getEnableVsync().getValue();
             prevViewDistance = mc.options.getViewDistance().getValue();
             prevAo = mc.options.getAo().getValue();
+            prevSimulationDistance = mc.options.getSimulationDistance().getValue();
+            prevEntityScaling = mc.options.getEntityDistanceScaling().getValue();
+            prevMipmap = mc.options.getMipmapLevels().getValue();
+            prevWeatherRadius = mc.options.getWeatherRadius().getValue();
+            prevGraphics = mc.options.getPreset().getValue();
+            prevBobView = mc.options.getBobView().getValue();
+            prevDistortion = mc.options.getDistortionEffectScale().getValue();
 
         } catch (Exception ignored) {
         }
@@ -100,6 +115,23 @@ public class Optimization extends Module {
                 if (fastGraphics.get()) mc.options.getPreset().setValue(GraphicsMode.FAST);
                 if (ao.get()) mc.options.getAo().setValue(false);
 
+                if (mega.get()) {
+                    mc.options.getParticles().setValue(ParticlesMode.MINIMAL);
+                    mc.options.getPreset().setValue(GraphicsMode.FAST);
+                    mc.options.getSimulationDistance().setValue(5);
+                    mc.options.getEntityDistanceScaling().setValue(0.5D);
+                    mc.options.getMipmapLevels().setValue(0);
+                    mc.options.getWeatherRadius().setValue(0);
+                    mc.options.getCloudRenderMode().setValue(CloudRenderMode.OFF);
+                    mc.options.getEntityShadows().setValue(false);
+                    mc.options.getBiomeBlendRadius().setValue(0);
+                    mc.options.getAo().setValue(false);
+                    mc.options.getEnableVsync().setValue(false);
+                    mc.options.getMaxFps().setValue(260);
+                    mc.options.getBobView().setValue(false);
+                    mc.options.getDistortionEffectScale().setValue(0D);
+                }
+
             } else {
                 if (prevMaxFps != null) mc.options.getMaxFps().setValue(prevMaxFps);
                 if (prevParticles != null) mc.options.getParticles().setValue(prevParticles);
@@ -110,6 +142,13 @@ public class Optimization extends Module {
                 if (prevVsync != null) mc.options.getEnableVsync().setValue(prevVsync);
                 if (prevViewDistance != null) mc.options.getViewDistance().setValue(prevViewDistance);
                 if (prevAo != null) mc.options.getAo().setValue(prevAo);
+                if (prevSimulationDistance != null) mc.options.getSimulationDistance().setValue(prevSimulationDistance);
+                if (prevEntityScaling != null) mc.options.getEntityDistanceScaling().setValue(prevEntityScaling);
+                if (prevMipmap != null) mc.options.getMipmapLevels().setValue(prevMipmap);
+                if (prevWeatherRadius != null) mc.options.getWeatherRadius().setValue(prevWeatherRadius);
+                if (prevGraphics != null) mc.options.getPreset().setValue(prevGraphics);
+                if (prevBobView != null) mc.options.getBobView().setValue(prevBobView);
+                if (prevDistortion != null) mc.options.getDistortionEffectScale().setValue(prevDistortion);
 
             }
 
