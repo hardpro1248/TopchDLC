@@ -29,7 +29,7 @@ public class AutoTotem extends Module {
     public static final AutoTotem INSTANCE = new AutoTotem();
 
     private AutoTotem() {
-        super("Auto totem", Category.COMBAT, "берет тотем при опасностях");
+        super("Auto totem", Category.COMBAT, "Берет тотем в руку, если у тебя мало ХП");
     }
 
     public enum SwapHand {

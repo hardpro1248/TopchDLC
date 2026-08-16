@@ -21,7 +21,7 @@ import javax.security.auth.callback.CallbackHandler;
  */
 public class BowSpam extends Module {
     public static final BowSpam INSTANCE = new BowSpam();
-    private BowSpam(){super("BowSpam", Category.COMBAT,"x");}
+    private BowSpam(){super("BowSpam", Category.COMBAT,"При зажатии ПКМ быстро спамит стрелами");}
     private final SliderSetting ticks = sliderSetting("delay",3,0,20).increment(1f);
     @EventHandler
     public void onSync(EventGameTick event) {

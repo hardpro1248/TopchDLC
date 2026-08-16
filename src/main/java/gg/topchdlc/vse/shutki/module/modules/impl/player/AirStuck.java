@@ -15,7 +15,7 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 public class AirStuck extends Module {
     public static final AirStuck INSTANCE = new AirStuck();
     private AirStuck() {
-        super("AirStuck", Category.PLAYER, "замараживает тебя как глыбу");
+        super("AirStuck", Category.PLAYER, "Замораживает тебя, как в глыбе");
     }
 
     @AllArgsConstructor @Getter

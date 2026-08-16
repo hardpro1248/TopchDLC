@@ -12,7 +12,7 @@ import net.minecraft.sound.SoundEvent;
 public class ClientSounds extends Module {
     public static final ClientSounds INSTANCE = new ClientSounds();
     private ClientSounds() {
-        super("Client sounds", Category.Misc, "x");
+        super("Client sounds", Category.Misc, "Звуки клиента");
         setEnabled(true, false);
     }
 

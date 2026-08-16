@@ -18,7 +18,7 @@ public class FakePlayer extends Module {
     private OtherClientPlayerEntity fakePlayer;
 
     private FakePlayer() {
-        super("FakePlayer", Category.Misc, "ставит тебя фейкового");
+        super("FakePlayer", Category.Misc, "Спавнит фейкового игрока");
     }
     EventBus<Event> events = event -> {
         if (event instanceof EventGameTick) onUpdate();

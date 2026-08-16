@@ -24,7 +24,7 @@ import java.util.Random;
 public class TriggerBot extends Module {
     public static final TriggerBot INSTANCE = new TriggerBot();
     private TriggerBot() {
-        super("TriggerBot", Category.COMBAT, "сам бьет когда навелся на цель");
+        super("TriggerBot", Category.COMBAT, "Бьет, когда наводишься на цель");
     }
     CheckBox onlycrit = checkbox("Только криты", false);
     CheckBox shieldcheck = checkbox("Проверка на щит", true);

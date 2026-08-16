@@ -52,7 +52,7 @@ public class HitSound extends Module {
     }
 
     private HitSound() {
-        super("HitSound", Category.Misc, "Ы");
+        super("HitSound", Category.Misc, "Кастомные звуки ударов");
     }
 
     public boolean shouldApply() {

@@ -15,7 +15,7 @@ public class FreeLook extends Module {
     private float cameraYaw;
     private float cameraPitch;
     private Perspective previousPerspective = Perspective.FIRST_PERSON;
-    public FreeLook(){super("FreeLook", Category.Misc,"x");}
+    public FreeLook(){super("FreeLook", Category.Misc,"Свободное движение камеры");}
 
     EventBus<EventGameTick> tick = event -> {
         if (mc.player == null || mc.world == null) {

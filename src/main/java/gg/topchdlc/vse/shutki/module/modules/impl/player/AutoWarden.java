@@ -578,7 +578,7 @@ public class AutoWarden extends Module {
 
     // ==================== ОСТАЛЬНЫЕ МЕТОДЫ (без изменений) ====================
     public AutoWarden() {
-        super("AutoWarden", Category.PLAYER, "Авто ферма вардена");
+        super("AutoWarden", Category.PLAYER, "Автоматически телепортируется на вардена и лутает сундуки");
     }
 
     @Override

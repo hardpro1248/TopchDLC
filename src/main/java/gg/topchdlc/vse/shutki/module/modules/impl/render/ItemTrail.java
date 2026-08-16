@@ -51,7 +51,7 @@ public class ItemTrail extends Module {
     private VertexConsumerProvider.Immediate imm;
 
     private ItemTrail() {
-        super("ItemTrail", Category.RENDER, "еее");
+        super("ItemTrail", Category.RENDER, "Дорожка за предметом");
     }
 
     @Override

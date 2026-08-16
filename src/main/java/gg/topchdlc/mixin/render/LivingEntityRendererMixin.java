@@ -3,7 +3,6 @@ package gg.topchdlc.mixin.render;
 import gg.topchdlc.Client;
 import gg.topchdlc.api.render.system.ClientPipelines;
 import gg.topchdlc.vse.shutki.module.modules.impl.render.HitAnimation;
-import gg.topchdlc.vse.shutki.module.modules.impl.render.PopEffect;
 import gg.topchdlc.vse.shutki.module.modules.impl.render.Removals;
 import gg.topchdlc.vse.shutki.module.modules.impl.render.SeeInvisible;
 import gg.topchdlc.vse.utils.math.ColorUtility;
@@ -96,48 +95,5 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
         }
     }
 
-    @Inject(method = "render", at = @At("TAIL"))
-    private void renderGhostChams(S state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState, CallbackInfo ci) {
-        PopEffect pop = PopEffect.INSTANCE;
-        if (!pop.isEnabled() || !pop.chamsEnabled.get()) return;
-
-        Integer currentEntityId = STATE_TO_ENTITY_ID.get(state);
-        if (currentEntityId == null) return;
-
-        for (PopEffect.ChamGhost ghost : PopEffect.CHAMS_GHOSTS) {
-            if (ghost.entityId != currentEntityId) continue;
-            if (ghost.isFinished()) continue;
-
-            float alpha = ghost.alpha();
-            if (alpha <= 0.001f) continue;
-
-            float offset = ghost.riseY();
-
-            Color c = pop.chamsUseCustomColor.get() ? pop.chamsColor.get() : ClientSettings.INSTANCE.getColor(0);
-            int fillA = (int)(45 * alpha);
-            int fillArgb = (fillA << 24) | (c.getRed() << 16) | (c.getGreen() << 8) | c.getBlue();
-
-            renderGhostModel(state, matrices, queue, fillArgb, offset);
-            renderGhostModel(state, matrices, queue, fillArgb, -offset);
-        }
-    }
-
-    @Unique
-    private void renderGhostModel(S state, MatrixStack matrices, OrderedRenderCommandQueue queue, int argb, float yOffset) {
-        matrices.push();
-
-        float g = state.baseScale;
-        matrices.scale(g, g, g);
-        this.setupTransforms(state, matrices, state.bodyYaw, g);
-        matrices.scale(-1.0F, -1.0F, 1.0F);
-        this.scale(state, matrices);
-
-        matrices.translate(0.0F, -1.501F + yOffset, 0.0F);
-
-        RenderLayer layer = ClientPipelines.QUAD;
-        queue.submitModel(this.model, state, matrices, layer, state.light, OverlayTexture.DEFAULT_UV, argb, null, state.outlineColor, null);
-
-        matrices.pop();
-    }
 
 }

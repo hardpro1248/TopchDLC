@@ -19,7 +19,7 @@ public class BetterMinecraft extends Module {
     public static final BetterMinecraft INSTANCE = new BetterMinecraft();
 
     private BetterMinecraft() {
-        super("BetterMinecraft", Category.RENDER, "xxx");
+        super("BetterMinecraft", Category.RENDER, "Добавляет различные анимации");
     }
 
     public final Group anim = group("Animation");

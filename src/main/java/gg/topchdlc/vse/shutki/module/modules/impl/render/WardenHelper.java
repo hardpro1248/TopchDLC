@@ -92,7 +92,7 @@ public class WardenHelper extends Module {
     };
 
     private WardenHelper() {
-        super("WardenHelper", Category.RENDER, "xxx");
+        super("WardenHelper", Category.RENDER, "Помощник вардена");
     }
 
     private static class WardenChest {

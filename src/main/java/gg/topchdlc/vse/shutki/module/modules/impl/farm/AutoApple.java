@@ -77,7 +77,7 @@ public class AutoApple extends Module {
     private final TimeUtility repairTimer = new TimeUtility();
 
     private AutoApple() {
-        super("AutoApple", Category.PLAYER, "само вырашивает деревья и вскапывает их ради яблок");
+        super("AutoApple", Category.PLAYER, "Сам выращивает деревья и фармит яблоки");
     }
 
     @Override

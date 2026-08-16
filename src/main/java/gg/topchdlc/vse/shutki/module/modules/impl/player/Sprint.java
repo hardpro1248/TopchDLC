@@ -26,7 +26,7 @@ public class Sprint extends Module {
     public CheckBox ignoreHunger = checkbox("Ignore hunger", false);
 
     private Sprint() {
-        super("Sprint", Category.PLAYER, "ээуу");
+        super("Sprint", Category.PLAYER, "Автоматически бежит");
         setEnabled(true, false);
     }
     OtherClientPlayerEntity fakePlayers;

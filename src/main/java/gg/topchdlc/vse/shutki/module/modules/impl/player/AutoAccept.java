@@ -19,7 +19,7 @@ public class AutoAccept extends Module {
     
     private final CheckBox onlyFriends = checkbox("Только друзья", false);
     private AutoAccept() {
-        super("Auto Accept", Category.PLAYER, "само принимает тп");
+        super("Auto Accept", Category.PLAYER, "Автоматически принимает запрос на телепортацию");
     }
     EventBus<Event> events = event -> {
         if (mc.player == null || mc.world == null) return;

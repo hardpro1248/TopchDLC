@@ -36,7 +36,7 @@ public class NoSlowDown extends Module {
     public static NoSlowDown INSTANCE = new NoSlowDown();
 
     public NoSlowDown() {
-        super("No Slow Down", Category.MOVEMENT, "убирает замедло при использование предметов");
+        super("No Slow Down", Category.MOVEMENT, "Убирает замедление от предметов");
     }
 
     public EnumSetting<Modes> mode = enumSetting("Modes", Modes.Default);

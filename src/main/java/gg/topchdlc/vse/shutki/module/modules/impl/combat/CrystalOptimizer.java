@@ -28,7 +28,7 @@ public class CrystalOptimizer extends Module {
     public static final CrystalOptimizer INSTANCE = new CrystalOptimizer();
 
     private CrystalOptimizer() {
-        super("CrystalOptimizer", Category.Misc, "не неробит");
+        super("CrystalOptimizer", Category.Misc, "Оптимизирует кристаллы");
     }
 
     @EventHandler

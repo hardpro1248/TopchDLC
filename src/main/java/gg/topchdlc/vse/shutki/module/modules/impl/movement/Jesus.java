@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class Jesus extends Module {
     public Jesus() {
-        super("Jesus", Category.MOVEMENT, "Хесус дефолт на воде просто");
+        super("Jesus", Category.MOVEMENT, "Позволяет ходить по воде");
     }
     public static final Jesus INSTANCE = new Jesus();
 
