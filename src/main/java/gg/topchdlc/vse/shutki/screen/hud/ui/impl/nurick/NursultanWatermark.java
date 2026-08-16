@@ -13,6 +13,7 @@ import gg.topchdlc.vse.utils.player.MoveUtility;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Nullables;
 import org.joml.Vector4f;
 
@@ -36,6 +37,8 @@ public class NursultanWatermark extends HudElement {
     private static final String SEPARATOR = "|";
 
     private static final Vector4f ROUND = new Vector4f(5.5f, 5.5f, 5.5f, 5.5f);
+    private static final Identifier LOGO = Identifier.of("topchdlc", "images/ui/logo.png");
+    private static final float LOGO_TEXTURE_SIZE = 10f;
 
     public NursultanWatermark(Drag drag) {
         super("NursultanWatermark", drag);
@@ -56,7 +59,7 @@ public class NursultanWatermark extends HudElement {
             }
         }
 
-        float logoW = Client.RENDERER.textWidth(NurickIcons.NURICK, TextureUse.ICONS_NURIK, LOGO_SIZE)
+        float logoW = LOGO_TEXTURE_SIZE
                 + INNER_GAP
                 + Client.RENDERER.textWidth("TopchDLC", TextureUse.SFMEDIUM, TEXT_SIZE);
         float sepW = Client.RENDERER.textWidth(SEPARATOR, TextureUse.SFMEDIUM, TEXT_SIZE);
@@ -81,7 +84,11 @@ public class NursultanWatermark extends HudElement {
         float textY = y + (PILL_H / 2f) - (textHeight / 2f);
 
         float curX = x + PAD_X;
-        curX = drawEntry(curX, iconY, textY, NurickIcons.NURICK, "TopchDLC", theme, white);
+        Client.RENDERER.texture(LOGO, curX, y + (PILL_H / 2f) - (LOGO_TEXTURE_SIZE / 2f), LOGO_TEXTURE_SIZE, LOGO_TEXTURE_SIZE,
+                1f, new Vector4f(0), Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
+        curX += LOGO_TEXTURE_SIZE + INNER_GAP;
+        Client.RENDERER.text("TopchDLC", curX, textY, TextureUse.SFMEDIUM, TEXT_SIZE, white);
+        curX += Client.RENDERER.textWidth("TopchDLC", TextureUse.SFMEDIUM, TEXT_SIZE);
 
         for (ElementData elementData : data) {
             Client.RENDERER.text(SEPARATOR, curX + SEP_GAP, textY, TextureUse.SFMEDIUM, TEXT_SIZE, sep);

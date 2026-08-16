@@ -99,6 +99,7 @@
     "render.WorldMixin",
     "render.WorldRendererMixin",
     "screen.HandleScreenMixin",
+    "screen.ContainerButtonsMixin",
     "screen.ChatHudMixin",
     "screen.InventoryScreenMixin",
     "screen.ChatScreenMixin",

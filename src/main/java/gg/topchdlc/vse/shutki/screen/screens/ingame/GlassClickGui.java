@@ -31,6 +31,7 @@ import gg.topchdlc.vse.utils.other.LogUtility;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
@@ -57,6 +58,7 @@ private boolean searchFocused = false;
     private float clientSettingsScroll = 0;
     private float clientSettingsScrollAnim = 0f;
     private float categorySwitchProgress = 1f;
+    private static final Identifier LOGO = Identifier.of("topchdlc", "images/ui/logo.png");
     private final float WIDTH = 480f;
     private final float HEIGHT = 290f;
     public boolean WRITING = false;
@@ -288,6 +290,8 @@ private boolean searchFocused = false;
             Client.RENDERER.rect(drag.x, drag.y, WIDTH, HEIGHT, new Vector4f(10), 1, mainBg, mainBg, mainBg, mainBg);
             Color border = new Color(255, 255, 255, 8);
             Client.RENDERER.outline(drag.x, drag.y, WIDTH, HEIGHT, 0.2f, new Vector4f(10), new Vector2f(1), border, border, border, border);
+
+            renderBrand();
 
             renderTopSearch(mouseX, mouseY);
 
@@ -541,6 +545,29 @@ private boolean searchFocused = false;
         Client.RENDERER.rect(x, y, 17, 8f, new Vector4f(4f), 1, thumbBackColor, thumbBackColor, thumbBackColor, thumbBackColor);
         float knobX = x + 1.2f + (8f * currentAnim);
         Client.RENDERER.rect(knobX, y + 1f, 6.5f, 6f, new Vector4f(3f), 1, thumbColor, thumbColor, thumbColor, thumbColor);
+    }
+
+    private void renderBrand() {
+        float logoSize = 14f;
+        float logoX = drag.x + 10f;
+        float logoY = drag.y + 7.5f;
+        Client.RENDERER.texture(LOGO, logoX, logoY, logoSize, logoSize, 1f, new Vector4f(0),
+                Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
+
+        String name = "TopchDLC";
+        float textSize = 7f;
+        float textX = logoX + logoSize + 4f;
+        float textY = logoY + logoSize / 2f - Client.RENDERER.textHeight(TextureUse.SFMEDIUM, textSize) / 2f;
+
+        Color glow = new Color(40, 110, 255);
+        for (float radius = 1.6f; radius >= 0.4f; radius -= 0.4f) {
+            Color layer = new Color(glow.getRed(), glow.getGreen(), glow.getBlue(), 26);
+            Client.RENDERER.text(name, textX - radius, textY, TextureUse.SFMEDIUM, textSize, layer);
+            Client.RENDERER.text(name, textX + radius, textY, TextureUse.SFMEDIUM, textSize, layer);
+            Client.RENDERER.text(name, textX, textY - radius, TextureUse.SFMEDIUM, textSize, layer);
+            Client.RENDERER.text(name, textX, textY + radius, TextureUse.SFMEDIUM, textSize, layer);
+        }
+        Client.RENDERER.text(name, textX, textY, TextureUse.SFMEDIUM, textSize, new Color(120, 190, 255));
     }
 
     private void renderTopSearch(int mouseX, int mouseY) {
