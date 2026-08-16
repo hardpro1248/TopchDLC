@@ -1,0 +1,8 @@
+{
+  "vertex": "topchdlc:pipeline/shader_fog",
+  "fragment": "topchdlc:pipeline/nebula",
+  "samplers": [],
+  "uniforms": [
+    { "name": "ShaderFogData", "type": "uniform_buffer", "count": 1 }
+  ]
+}

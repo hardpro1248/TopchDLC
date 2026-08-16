@@ -1,0 +1,55 @@
+package gg.topchdlc.mixin.client;
+
+import gg.topchdlc.vse.shutki.module.modules.impl.player.AutoTool;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import static gg.topchdlc.MinecraftHolder.mc;
+
+/**
+ * Create by daun kvass
+ */
+@Mixin({AbstractBlock.class})
+public abstract class MixinAbstractBlock {
+    @Inject(method = "calcBlockBreakingDelta", at = @At("HEAD"), cancellable = true)
+    public void calcBlockBreakingDeltaHook(BlockState state, PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> ci)  {
+        if(AutoTool.INSTANCE.isEnabled() && AutoTool.INSTANCE.silent.get()) {
+            float f = state.getHardness(world, pos);
+            if (f < 0.0F) {
+                ci.setReturnValue(0.0f);
+            } else {
+                float dig_speed = getDigSpeed(state, player.getInventory().getStack(AutoTool.itemIndex)) / f;
+                ci.setReturnValue(player.getInventory().getStack(AutoTool.itemIndex).isSuitableFor(state) ? dig_speed / 30.0F : dig_speed / 100.0F);
+            }
+        }
+    }
+
+    public float getDigSpeed(BlockState state, ItemStack stack) {
+        float str = stack.getMiningSpeedMultiplier(state);
+
+        if (str > 1.0f) {
+            var efficiencyEntry = mc.world.getRegistryManager()
+                    .getOrThrow(RegistryKeys.ENCHANTMENT)
+                    .getOrThrow(Enchantments.EFFICIENCY);
+
+            int level = EnchantmentHelper.getLevel(efficiencyEntry, stack);
+
+            if (level > 0) {
+                str += (float) (level * level + 1);
+            }
+        }
+
+        return Math.max(str, 0.0f);
+    }
+}

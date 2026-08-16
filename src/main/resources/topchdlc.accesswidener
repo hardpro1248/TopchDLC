@@ -1,0 +1,69 @@
+accessWidener v1 named
+
+mutable field net/minecraft/util/math/Vec3d x D
+mutable field net/minecraft/util/math/Vec3d y D
+mutable field net/minecraft/util/math/Vec3d z D
+
+accessible class net/minecraft/client/gui/render/GuiRenderer$Draw
+accessible method net/minecraft/client/render/GameRenderer getFov (Lnet/minecraft/client/render/Camera;FZ)F
+
+# Entity & Movement
+accessible method net/minecraft/entity/Entity movementInputToVelocity (Lnet/minecraft/util/math/Vec3d;FF)Lnet/minecraft/util/math/Vec3d;
+accessible method net/minecraft/entity/player/PlayerEntity getVelocityMultiplier ()F
+accessible field net/minecraft/entity/Entity dimensions Lnet/minecraft/entity/EntityDimensions;
+accessible field net/minecraft/entity/LivingEntity jumping Z
+accessible field net/minecraft/entity/LivingEntity jumpingCooldown I
+accessible method net/minecraft/entity/LivingEntity applyArmorToDamage (Lnet/minecraft/entity/damage/DamageSource;F)F
+accessible method net/minecraft/entity/LivingEntity modifyAppliedDamage (Lnet/minecraft/entity/damage/DamageSource;F)F
+accessible method net/minecraft/entity/LivingEntity getJumpVelocity ()F
+accessible field net/minecraft/entity/Entity fluidHeight Lit/unimi/dsi/fastutil/objects/Object2DoubleMap;
+accessible field net/minecraft/entity/Entity submergedFluidTag Ljava/util/Set;
+
+# HUD & UI
+accessible class net/minecraft/client/gui/hud/InGameHud$BarType
+accessible field net/minecraft/client/render/entity/LivingEntityRenderer features Ljava/util/List;
+accessible field net/minecraft/client/gui/hud/BossBarHud bossBars Ljava/util/Map;
+accessible field net/minecraft/client/gui/hud/PlayerListHud hearts Ljava/util/Map;
+accessible field net/minecraft/client/gui/hud/InGameHud SCOREBOARD_ENTRY_COMPARATOR Ljava/util/Comparator;
+accessible class net/minecraft/client/gui/hud/PlayerListHud$ScoreDisplayEntry
+accessible method net/minecraft/client/gui/hud/PlayerListHud$ScoreDisplayEntry <init> (Lnet/minecraft/text/Text;ILnet/minecraft/text/Text;I)V
+accessible method net/minecraft/client/gui/hud/PlayerListHud renderLatencyIcon (Lnet/minecraft/client/gui/DrawContext;IIILnet/minecraft/client/network/PlayerListEntry;)V
+accessible method net/minecraft/client/gui/hud/PlayerListHud renderScoreboardObjective (Lnet/minecraft/scoreboard/ScoreboardObjective;ILnet/minecraft/client/gui/hud/PlayerListHud$ScoreDisplayEntry;IILjava/util/UUID;Lnet/minecraft/client/gui/DrawContext;)V
+accessible field net/minecraft/client/gui/hud/PlayerListHud footer Lnet/minecraft/text/Text;
+accessible field net/minecraft/client/gui/hud/PlayerListHud header Lnet/minecraft/text/Text;
+accessible method net/minecraft/client/gui/hud/PlayerListHud collectPlayerEntries ()Ljava/util/List;
+accessible method net/minecraft/client/gui/hud/InGameHud renderOverlayMessage (Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V
+accessible field net/minecraft/client/gui/hud/InGameHud overlayMessage Lnet/minecraft/text/Text;
+accessible field net/minecraft/client/gui/hud/InGameHud overlayTinted Z
+accessible method net/minecraft/client/gui/hud/InGameHud renderHeldItemTooltip (Lnet/minecraft/client/gui/DrawContext;)V
+accessible field net/minecraft/client/gui/hud/InGameHud overlayRemaining I
+accessible field net/minecraft/client/gui/hud/InGameHud currentStack Lnet/minecraft/item/ItemStack;
+accessible field net/minecraft/client/gui/hud/InGameHud heldItemTooltipFade I
+accessible method net/minecraft/client/gui/hud/InGameHud renderMountHealth (Lnet/minecraft/client/gui/DrawContext;)V
+
+# Networking & Interaction
+accessible method net/minecraft/client/network/ClientPlayerInteractionManager sendSequencedPacket (Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/client/network/SequencedPacketCreator;)V
+accessible field net/minecraft/network/packet/c2s/play/PlayerInteractItemC2SPacket yaw F
+accessible field net/minecraft/network/packet/c2s/play/PlayerInteractItemC2SPacket pitch F
+mutable field net/minecraft/network/packet/c2s/play/PlayerInteractItemC2SPacket yaw F
+mutable field net/minecraft/network/packet/c2s/play/PlayerInteractItemC2SPacket pitch F
+
+# Window & Player State
+accessible field net/minecraft/client/util/Window framebufferWidth I
+accessible field net/minecraft/client/util/Window framebufferHeight I
+accessible field net/minecraft/client/util/Window scaledHeight I
+accessible field net/minecraft/client/util/Window scaledWidth I
+accessible field net/minecraft/client/network/ClientPlayerEntity lastPitchClient F
+accessible field net/minecraft/client/network/ClientPlayerEntity lastYawClient F
+accessible field net/minecraft/client/network/ClientPlayerEntity lastOnGround Z
+accessible field net/minecraft/client/network/ClientPlayerEntity lastSprinting Z
+
+# Cooldowns
+accessible class net/minecraft/entity/player/ItemCooldownManager$Entry
+accessible field net/minecraft/entity/player/ItemCooldownManager entries Ljava/util/Map;
+accessible field net/minecraft/entity/player/ItemCooldownManager tick I
+accessible field net/minecraft/entity/player/ItemCooldownManager$Entry endTick I
+
+# Rendering Arms (Updated for 1.21.2)
+accessible method net/minecraft/client/render/entity/PlayerEntityRenderer renderRightArm (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/util/Identifier;Z)V
+accessible method net/minecraft/client/render/entity/PlayerEntityRenderer renderLeftArm (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/util/Identifier;Z)V

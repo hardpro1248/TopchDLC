@@ -1,0 +1,8 @@
+{
+  "vertex": "minecraft:core/position_color",
+  "fragment": "topchdlc:pipeline/water",
+  "samplers": [],
+  "uniforms": [
+    { "name": "ShaderFogData", "type": "uniform_buffer", "count": 1 }
+  ]
+}

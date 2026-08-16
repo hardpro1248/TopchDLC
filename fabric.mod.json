@@ -1,0 +1,24 @@
+﻿{
+  "schemaVersion": 1,
+  "id": "topchdlc",
+  "version": "67",
+  "name": "TopchDLC",
+  "description": "67 brother All",
+  "authors": ["Kvas"],
+  "contact": {"homepage": "67"},
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "icon": "assets/topchdlc/icon.png",
+  "entrypoints": {"main": ["gg.topchdlc.Client"]},
+  "mixins": [
+    "topchdlc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "fabric": "*",
+    "minecraft": "1.21.11"
+  },
+  "accessWidener": "topchdlc.accesswidener",
+  "jars": [
+  ]
+}
