@@ -7,7 +7,6 @@ import gg.topchdlc.Client;
 import gg.topchdlc.api.events.list.EventAttack;
 import gg.topchdlc.api.events.list.EventClickSlot;
 import net.minecraft.screen.slot.SlotActionType;
-import gg.topchdlc.vse.shutki.module.modules.impl.combat.CrystalAuto;
 import gg.topchdlc.vse.shutki.module.modules.impl.combat.Hitbox;
 import gg.topchdlc.vse.shutki.module.modules.impl.player.NoInteract;
 import gg.topchdlc.vse.rotation.Angle;
@@ -120,13 +119,6 @@ public abstract class ClientPlayerInteractionManagerMixin {
     private void client$interactBlock(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
         if (NoInteract.INSTANCE.shouldBlock()) {
             cir.setReturnValue(ActionResult.PASS);
-        }
-        ItemStack held = player.getStackInHand(hand);
-        if (held.getItem() == Items.OBSIDIAN) {
-            BlockPos placePos = hitResult.getBlockPos().offset(hitResult.getSide());
-            if (player.getEntityWorld().getBlockState(placePos).isAir()) {
-                CrystalAuto.INSTANCE.onObsidianPlaced(placePos);
-            }
         }
         if(mc.player != null && AssistModule.INSTANCE.cancelSettings.get().contains(AssistModule.CancelMode.NoBallPlace) && AssistModule.INSTANCE.isEnabled()
                 && ((mc.player.getOffHandStack().getItem() == Items.PLAYER_HEAD && hand == Hand.OFF_HAND) || (mc.player.getMainHandStack().getItem() == Items.PLAYER_HEAD && hand == Hand.MAIN_HAND)))

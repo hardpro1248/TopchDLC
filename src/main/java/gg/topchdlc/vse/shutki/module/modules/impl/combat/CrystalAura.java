@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EndCrystalItem;
 import net.minecraft.item.Item;
@@ -176,8 +177,8 @@ public class CrystalAura extends Module {
                 continue;
             }
 
-            float targetDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, target);
-            float selfDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, mc.player);
+            float targetDamage = estimateDamage(crystalPos, target);
+            float selfDamage = estimateDamage(crystalPos, mc.player);
 
             if (!isGoodDamage(targetDamage, selfDamage, crystalPos, target)) {
                 continue;
@@ -208,8 +209,8 @@ public class CrystalAura extends Module {
             Vec3d crystalPos = getCrystalVec(pos);
             if (mc.player.getEyePos().distanceTo(crystalPos) > range.get()) continue;
 
-            float targetDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, target);
-            float selfDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, mc.player);
+            float targetDamage = estimateDamage(crystalPos, target);
+            float selfDamage = estimateDamage(crystalPos, mc.player);
 
             if (!isGoodDamage(targetDamage, selfDamage, crystalPos, target)) {
                 continue;
@@ -243,8 +244,8 @@ public class CrystalAura extends Module {
             if (!canPlaceObsidian(pos, target, face)) continue;
 
             Vec3d crystalPos = getCrystalVec(pos);
-            float targetDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, target);
-            float selfDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, mc.player);
+            float targetDamage = estimateDamage(crystalPos, target);
+            float selfDamage = estimateDamage(crystalPos, mc.player);
 
             if (!isGoodDamage(targetDamage, selfDamage, crystalPos, target)) {
                 continue;
@@ -284,8 +285,8 @@ public class CrystalAura extends Module {
             float targetDamage = 0;
             float selfDamage = 0;
             try {
-                targetDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, target);
-                selfDamage = CrystalAuto.INSTANCE.estimateDamage(crystalPos, mc.player);
+                targetDamage = estimateDamage(crystalPos, target);
+                selfDamage = estimateDamage(crystalPos, mc.player);
             } finally {
                 mc.world.setBlockState(breakPos, originalState, 19);
             }
@@ -854,6 +855,22 @@ public class CrystalAura extends Module {
     private void line(MatrixStack.Entry entry, VertexConsumer consumer, double x1, double y1, double z1, double x2, double y2, double z2, int r, int g, int b, int a) {
         vertex(entry, consumer, x1, y1, z1, r, g, b, a);
         vertex(entry, consumer, x2, y2, z2, r, g, b, a);
+    }
+
+    private float estimateDamage(Vec3d crystalPos, Entity entity) {
+        double dist = entity.getEntityPos().distanceTo(crystalPos);
+        if (dist > 12) return 0;
+        double exposure = (1.0 - dist / 12.0);
+        float damage = (float) (exposure * exposure * 42.0);
+        if (entity instanceof PlayerEntity player) {
+            int armorValue = player.getArmor();
+            damage *= (1.0f - Math.min(armorValue * 0.04f, 0.8f));
+            if (player.hasStatusEffect(StatusEffects.RESISTANCE)) {
+                int resistLevel = player.getStatusEffect(StatusEffects.RESISTANCE).getAmplifier() + 1;
+                damage *= (1.0f - resistLevel * 0.2f);
+            }
+        }
+        return Math.max(0, damage);
     }
 
     private enum ActionType {

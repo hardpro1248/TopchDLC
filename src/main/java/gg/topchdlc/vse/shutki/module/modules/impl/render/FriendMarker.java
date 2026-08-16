@@ -33,7 +33,7 @@ public class FriendMarker extends Module {
     public final SliderSetting size       = sliderSetting("Size", 0.4f, 0.1f, 1.5f).increment(0.05f);
     public final ColorSetting markerColor = colorSetting("Color", new Color(50, 255, 50, 255));
 
-    private FriendMarker() {super("FriendMarker", Category.RENDER,"над друзьями как из симса ромб");}
+    private FriendMarker() {super("FriendMarker", Category.RENDER,"Ромб над другом");}
 
 
     public final EventBus<Event> bus = event -> {

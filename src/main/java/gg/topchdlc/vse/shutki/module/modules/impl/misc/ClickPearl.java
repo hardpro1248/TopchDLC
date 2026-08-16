@@ -32,7 +32,7 @@ public class ClickPearl extends Module {
     }
 
     private ClickPearl() {
-        super("ClickPearl", Category.PLAYER, "быстрое бросание перла");
+        super("ClickPearl", Category.PLAYER, "Быстрое бросание эндер жемчуга");
     }
 
     public KeybindSetting enderpearl = keybindSetting("Бинд перла", -1);

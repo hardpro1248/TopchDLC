@@ -289,7 +289,7 @@ private boolean searchFocused = false;
             Color border = new Color(255, 255, 255, 8);
             Client.RENDERER.outline(drag.x, drag.y, WIDTH, HEIGHT, 0.2f, new Vector4f(10), new Vector2f(1), border, border, border, border);
 
-            renderTopCategories(mouseX, mouseY);
+            renderTopSearch(mouseX, mouseY);
 
             if (currentCategory == Category.Settings) {
                 renderClientSettingsTab(mouseX, mouseY);
@@ -298,7 +298,7 @@ private boolean searchFocused = false;
             } else {
                 renderModulesGrid(mouseX, mouseY);
             }
-            renderBottomSearch(mouseX, mouseY);
+            renderBottomCategories(mouseX, mouseY);
 
             synchronized (WIDGETS) {
                 WIDGETS.render(mouseX, mouseY);
@@ -353,7 +353,7 @@ private boolean searchFocused = false;
         Client.RENDERER.text(text, tooltipX + pad, tooltipY + (tooltipH - fontSize) / 2f - 0.5f, TextureUse.SFMEDIUM, fontSize, textColor);
     }
 
-    private void renderTopCategories(int mouseX, int mouseY) {
+    private void renderBottomCategories(int mouseX, int mouseY) {
         Category[] categories = Category.values();
 
         float totalCatWidth = 0;
@@ -373,7 +373,7 @@ private boolean searchFocused = false;
         totalCatWidth -= 3f;
 
         float startX = drag.x + (WIDTH - totalCatWidth) / 2f;
-        float startY = drag.y + 6f;
+        float startY = drag.y + HEIGHT - 21f;
         float barH = 18f;
 
         Color barBg = new Color(6, 6, 10, 25);
@@ -543,11 +543,11 @@ private boolean searchFocused = false;
         Client.RENDERER.rect(knobX, y + 1f, 6.5f, 6f, new Vector4f(3f), 1, thumbColor, thumbColor, thumbColor, thumbColor);
     }
 
-    private void renderBottomSearch(int mouseX, int mouseY) {
+    private void renderTopSearch(int mouseX, int mouseY) {
         float searchW = 110f;
         float searchH = 17f;
         float searchX = drag.x + (WIDTH - searchW) / 2f;
-        float searchY = drag.y + HEIGHT - 21f;
+        float searchY = drag.y + 6f;
 
         Color searchBg = searchFocused ? new Color(255, 255, 255, 12) : new Color(12, 12, 16, 100);
         Client.RENDERER.rect(searchX, searchY, searchW, searchH, new Vector4f(8), 1, searchBg, searchBg, searchBg, searchBg);
@@ -1062,7 +1062,7 @@ private boolean searchFocused = false;
         float searchW = 110f;
         float searchH = 17f;
         float searchX = drag.x + (WIDTH - searchW) / 2f;
-        float searchY = drag.y + HEIGHT - 21f;
+        float searchY = drag.y + 6f;
         if (MathUtility.mouseIn(searchX, searchY, searchW, searchH, mouseX, mouseY)) {
             searchFocused = true;
             return true;
@@ -1072,7 +1072,7 @@ private boolean searchFocused = false;
         float totalCatWidth = 0;
         for (Category cat : categories) totalCatWidth += categoryWidths.getOrDefault(cat, 20f) + 3f;
         float startX = drag.x + (WIDTH - totalCatWidth + 3f) / 2f;
-        float startY = drag.y + 6f;
+        float startY = drag.y + HEIGHT - 21f;
 
         float curX = startX;
         for (Category cat : categories) {

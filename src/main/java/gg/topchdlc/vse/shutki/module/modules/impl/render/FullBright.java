@@ -16,7 +16,7 @@ public class FullBright extends Module {
     public static final FullBright INSTANCE = new FullBright();
 
     private FullBright() {
-        super("FullBright", Category.Misc, "ssss");
+        super("FullBright", Category.Misc, "Позволяет видеть в темноте");
         setEnabled(true, false);
     }
 

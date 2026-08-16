@@ -36,7 +36,7 @@ public class AHHelper extends Module {
     private final CheckBox showPricePerUnit = checkbox("Показывать цену за единицу", true);
     private final KeybindSetting searchItemBind = keybindSetting("Поиск предмета", -1);
     private AHHelper() {
-        super("AH Helper", Category.Misc, "Помощник C ауком причем умный");
+        super("AH Helper", Category.Misc, "Помощь с аукционом");
     }
 
     public boolean isPricePerUnit() {

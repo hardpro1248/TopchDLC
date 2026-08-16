@@ -64,7 +64,7 @@ public class BlockHighlightModule extends Module {
     private float sweepProgress = 0f;
 
     private BlockHighlightModule() {
-        super("BlockHighlight", Category.RENDER, "оуталан блоков так сказать");
+        super("BlockHighlight", Category.RENDER, "Красивая обводка блоков");
     }
 
     @Override

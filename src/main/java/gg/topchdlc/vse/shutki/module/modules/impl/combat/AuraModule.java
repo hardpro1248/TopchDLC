@@ -46,7 +46,7 @@ public class AuraModule extends Module {
     public static final AuraModule INSTANCE = new AuraModule();
 
     private AuraModule() {
-        super("Aura", Category.COMBAT, "АУРА БЛЯТЬ", Tag.Sosiski);
+        super("Aura", Category.COMBAT, "Автоматически наводится и бьет противника", Tag.Sosiski);
     }
 
     public SliderSetting attackRangeSetting = sliderSetting("Attack Range", 3f, 0f, 6f).increment(0.1f);

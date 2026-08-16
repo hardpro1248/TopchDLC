@@ -7,7 +7,6 @@ import gg.topchdlc.api.events.list.EventChangeWorld;
 import gg.topchdlc.api.events.list.EventPacketTick;
 import gg.topchdlc.api.events.list.EventPostTick;
 import gg.topchdlc.vse.shutki.module.modules.impl.player.GuiWalk;
-import gg.topchdlc.vse.shutki.module.modules.impl.render.DynamicIsland;
 import gg.topchdlc.mixin.accessor.IKeyBinding;
 import gg.topchdlc.vse.utils.jni.DwmApi;
 import net.minecraft.client.MinecraftClient;
@@ -67,10 +66,6 @@ public abstract class MinecraftClientMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gl/Framebuffer;blitToScreen()V", shift = At.Shift.AFTER))
     private void client$onRender(CallbackInfo ci) {
         Client.RENDERER.prepare();
-        if (DynamicIsland.INSTANCE != null && DynamicIsland.INSTANCE.isEnabled() && mc.player != null) {
-            DynamicIsland.INSTANCE.render(null);
-        }
-
         Client.RENDERER.render();
     }
 

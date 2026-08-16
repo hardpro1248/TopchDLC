@@ -89,7 +89,7 @@ public class AutoBuy extends Module {
 
 
     private AutoBuy() {
-        super("Auto Buy", Category.Misc, "Автобаем-Автобаем");
+        super("Auto Buy", Category.Misc, "Автоматически покупает выбранные предметы");
         initItemSettings();
         shulkerManager.configure(this::onShulkerDone);
         relistManager.configure(this::onRelistDone);

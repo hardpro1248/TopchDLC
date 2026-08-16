@@ -1,10 +1,8 @@
 package gg.topchdlc.vse.utils.math;
 
 import gg.topchdlc.Client;
-import gg.topchdlc.vse.shutki.module.modules.impl.combat.ElytraAura;
 import gg.topchdlc.vse.shutki.module.modules.impl.combat.aura.utility.CalcRotUtility;
 import gg.topchdlc.vse.rotation.point.UBoxPoints;
-import gg.topchdlc.vse.shutki.module.modules.impl.combat.elytraaura.math.ElytraAuraResolve;
 import gg.topchdlc.vse.utils.client.targets.TargetsUtility;
 import lombok.experimental.UtilityClass;
 import net.minecraft.entity.Entity;
@@ -66,19 +64,6 @@ public class RotationUtility {
         float yaw = Client.ROTATION.getRotate().getYaw() + shortestYawPath;
         float pitch = MathHelper.clamp((float) (-Math.toDegrees(Math.atan2(diff.y, Math.hypot(diff.z, diff.x)))), -90, 90);
         yaw = MathHelper.wrapDegrees(yaw);
-        LivingEntity target = TargetsUtility.getTarget();
-        float[] deltats = CalcRotUtility.getDeltas(new Angle(yaw, pitch));
-        if (ElytraAura.INSTANCE.predictYawandPitchSetting.get()) {
-            if (target != null && mc.player.getEntityPos().distanceTo(ElytraAuraResolve.getFinalTargetVector(target, false)) > 3.4f && target.isGliding() && !ElytraAura.INSTANCE.antiAimIsActive && !ElytraAuraResolve.isStoyak(target)) {
-                float getYawDelt = deltats[0] / 1.5f;
-                float getPitchDelt = deltats[1] / 3f;
-                if (getYawDelt > 4)
-                    yaw += getYawDelt;
-                if (getPitchDelt > 3)
-                    pitch += getPitchDelt;
-            }
-        }
-
         return new Angle(yaw, pitch);
     }
 

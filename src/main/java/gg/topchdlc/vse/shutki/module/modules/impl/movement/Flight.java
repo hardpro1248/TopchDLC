@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Flight extends Module {
     public static final Flight INSTANCE = new Flight();
     private Flight() {
-        super("Flight", Category.MOVEMENT, "флигхт");
+        super("Flight", Category.MOVEMENT, "Позволяет летать");
     }
 
     public ChoiceSetting<Choice> mode = choiceSetting("Mode", 0,  new GrimGlideFly(),new MotionFly(),new JumpFly());

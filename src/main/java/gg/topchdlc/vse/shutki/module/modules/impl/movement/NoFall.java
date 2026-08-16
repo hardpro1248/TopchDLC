@@ -17,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
 public class NoFall extends Module {
     public static final NoFall INSTANCE = new NoFall();
     private NoFall() {
-        super("No Fall", Category.MOVEMENT, "отменяет демедж от падения");
+        super("No Fall", Category.MOVEMENT, "Отменяет урон при падении");
     }
 
     private enum Mode { Packet, Motion, MatrixGround, JumpReset, GrimLast,Test }

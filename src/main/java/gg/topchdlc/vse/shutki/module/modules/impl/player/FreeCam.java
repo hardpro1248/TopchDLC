@@ -30,7 +30,7 @@ public class FreeCam extends Module {
     OtherClientPlayerEntity fakePlayer;
 
     private FreeCam() {
-        super("FreeCam", Category.PLAYER, "бесплатная кто? сперма?");
+        super("FreeCam", Category.PLAYER, "Свободная камера");
     }
 
     EventBus<Event> events = event -> {

@@ -12,7 +12,7 @@ import gg.topchdlc.vse.shutki.module.settings.impl.choice.ChoiceSetting;
 
 public class Speed extends Module {
     private Speed() {
-        super("Speed", Category.MOVEMENT, "игрок становиться будто на лошади бистри");
+        super("Speed", Category.MOVEMENT, "Позволяет бегать как Флэш");
     }
     public static final Speed INSTANCE = new Speed();
     ChoiceSetting<Choice> mode = choiceSetting("Mode", 0,
